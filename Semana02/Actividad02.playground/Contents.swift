@@ -33,6 +33,12 @@ while true {
         let montoFinal = montoTotal + interes
         let pagoMensual = montoFinal / Double(meses)
         
+        print("")
+        print("Producto: \(nombreProducto)")
+        print("Monto total (sin interés): \(montoTotal)")
+        print("Interés aplicado: \(interes)")
+        print("Monto final a pagar: \(montoFinal)")
+        print("Pago mensual: \(pagoMensual)")
         
         break
     } else {
