@@ -12,6 +12,44 @@ let cantidad = Double(readLine() ?? "0") ?? 0
 let montoTotal = precioUnitario * cantidad
 
 
+func columna(_ texto: String, ancho: Int) -> String {
+    if texto.count >= ancho {
+        return texto
+    }
+    let espacios = String(repeating: " ", count: ancho - texto.count)
+    return texto + espacios
+}
+ 
+func imprimirTablaAmortizacion(meses: Int, montoFinal: Double, pagoMensual: Double) {
+    let anchoMes = 8
+    let anchoMonto = 18
+    let anchoCosto = 18
+    let anchoResta = 18
+ 
+    print("")
+    print(columna("Mes", ancho: anchoMes)
+        + columna("Monto inicial", ancho: anchoMonto)
+        + columna("Costo mensual", ancho: anchoCosto)
+        + columna("Resta por pagar", ancho: anchoResta))
+ 
+    let anchoTotal = anchoMes + anchoMonto + anchoCosto + anchoResta
+    print(String(repeating: "-", count: anchoTotal))
+ 
+    var montoInicial = montoFinal
+ 
+    for mes in 1...meses {
+        let resta = montoInicial - pagoMensual
+ 
+        let filaMes = columna("\(mes)", ancho: anchoMes)
+        let filaMontoInicial = columna(String(format: "%.2f", montoInicial), ancho: anchoMonto)
+        let filaCostoMensual = columna(String(format: "%.2f", pagoMensual), ancho: anchoCosto)
+        let filaResta = columna(String(format: "%.2f", resta), ancho: anchoResta)
+ 
+        print(filaMes + filaMontoInicial + filaCostoMensual + filaResta)
+ 
+        montoInicial = resta
+    }
+}
 
 
 while true {
@@ -39,6 +77,8 @@ while true {
         print("Interés aplicado: \(interes)")
         print("Monto final a pagar: \(montoFinal)")
         print("Pago mensual: \(pagoMensual)")
+
+        imprimirTablaAmortizacion(meses: meses, montoFinal: montoFinal, pagoMensual: pagoMensual)
         
         break
     } else {
