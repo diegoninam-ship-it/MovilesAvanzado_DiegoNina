@@ -1,0 +1,11 @@
+# Xcode
+xcuserdata/
+*.xcuserstate
+.DS_Store
+DerivedData/
+*.moved-aside
+*.xccheckout
+*.xcscmblueprint
+
+# Swift Package Manager
+.swiftpm/
