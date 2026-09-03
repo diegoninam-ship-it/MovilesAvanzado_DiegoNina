@@ -49,6 +49,23 @@ switch Int(totalCarrito) {
     case 2000..<5000: categoria = "VIP"
     default: categoria = "Premium"
 }
-
-
+// TODO 18: Ticket
+let sep = String(repeating: "=", count: 45)
+print(sep)
+print(" TICKET DE COMPRA 2.0")
+print(" Cliente: \(cliente) (\(categoria))")
+print(sep)
+for i in 0..<nombres.count {
+    print("\(nombres[i]) x\(cantidades[i]) S/. \(subtotales[i])")
+}
+print(sep)
+print("Subtotal: S/. \(totalCarrito)")
+if descPct > 0 {
+print("Descuento (\(descPct*100)%): -S/. \(descuento)")
+}
+print("IGV (18%): S/. \(igv)")
+print(sep)
+print("TOTAL: S/. \(totalFinal)")
+print(sep)
+print("¡Gracias por su compra, \(cliente)!")
 
