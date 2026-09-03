@@ -27,4 +27,28 @@ var totalCarrito = 0.0
 for sub in subtotales {
     totalCarrito += sub
 
+}
+// TODO 14: Nombre del cliente
+print("\nNombre del cliente:")
+let cliente = readLine() ?? ""
+// TODO 15: Descuento
+var descPct = 0.0
+if totalCarrito >= 5000 { descPct = 0.15 }
+else if totalCarrito >= 2000 { descPct = 0.10 }
+else if totalCarrito >= 500 { descPct = 0.05 }
+let descuento = totalCarrito * descPct
+let totalConDesc = totalCarrito - descuento
+// TODO 16: IGV y total
+let igv = totalConDesc * 0.18
+let totalFinal = totalConDesc + igv
+// TODO 17: Categoría
+var categoria = ""
+switch Int(totalCarrito) {
+    case 0..<500: categoria = "Regular"
+    case 500..<2000: categoria = "Frecuente"
+    case 2000..<5000: categoria = "VIP"
+    default: categoria = "Premium"
+}
+
+
 
