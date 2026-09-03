@@ -22,3 +22,9 @@ for i in 0..<nombres.count {
     let sub = precios[i] * Double(cantidades[i])
     subtotales.append(sub)
 }
+// TODO 13: Total del carrito
+var totalCarrito = 0.0
+for sub in subtotales {
+    totalCarrito += sub
+
+
