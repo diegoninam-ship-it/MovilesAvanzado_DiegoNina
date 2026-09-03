@@ -1,4 +1,4 @@
-// Desarrollado por: [TU NOMBRE]
+// Desarrollado por: Diego Nina
 import Foundation
 // ===== TODO 1: Registro de 5 alumnos =====
 var alumnos: [String] = []
