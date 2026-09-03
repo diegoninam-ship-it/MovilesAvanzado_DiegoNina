@@ -15,3 +15,10 @@ for i in 1...totalProductos {
     print("Cantidad:")
     cantidades.append(Int(readLine() ?? "") ?? 0)
 }
+
+// TODO 12: Calcular subtotales
+var subtotales: [Double] = []
+for i in 0..<nombres.count {
+    let sub = precios[i] * Double(cantidades[i])
+    subtotales.append(sub)
+}
