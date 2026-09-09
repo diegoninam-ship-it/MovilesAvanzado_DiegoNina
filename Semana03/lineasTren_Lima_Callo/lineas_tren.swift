@@ -151,7 +151,7 @@ func mensajeParaCorrespondencia(_ lineaA: String, _ lineaB: String) -> String {
     }
 }
 
-
+/*
 print(mensajeParaCorrespondencia("Línea 1", "Línea 2"))   // con correspondencia (proyectada)
 print(mensajeParaCorrespondencia("Línea 2", "Línea 1"))   // mismo caso, orden invertido
 print(mensajeParaCorrespondencia("Línea 3", "Línea 4"))   // sin correspondencia
@@ -159,8 +159,9 @@ print(mensajeParaCorrespondencia("Línea 1", "Línea 1"))   // misma línea
 print(mensajeParaCorrespondencia("Línea 1", "Línea 9"))   // línea inexistente
 print(mensajeParaCorrespondencia("", "Línea 2"))          // entrada inválida
 
+*/
 
-var pruebasFallidas = 0
+/* var pruebasFallidas = 0
 
 func verificar(_ descripcion: String, _ condicion: Bool) {
     if condicion {
@@ -228,3 +229,48 @@ if case .lineaNoRegistrada = correspondenciaEntre("", "Línea 2") {
 }
 
 print("\nResumen: \(pruebasFallidas == 0 ? "todas las pruebas pasaron" : "\(pruebasFallidas) prueba(s) fallaron")")
+*/
+
+func mostrarMenu() {
+    print("""
+
+    ===== Consulta Metro de Lima y Callao =====
+    1. Consultar estaciones de una línea
+    2. Consultar correspondencia entre dos líneas
+    3. Salir
+    =============================================
+    """)
+}
+
+func ejecutarMenu() {
+    var continuar = true
+
+    while continuar {
+        mostrarMenu()
+        print("Selecciona una opción: ", terminator: "")
+        let opcion = (readLine() ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+
+        switch opcion {
+        case "1":
+            print("Ingresa el identificador de línea (ej. Línea 1): ", terminator: "")
+            let linea = readLine() ?? ""
+            print(mensajeParaConsultaLinea(linea))
+
+        case "2":
+            print("Ingresa la primera línea: ", terminator: "")
+            let lineaA = readLine() ?? ""
+            print("Ingresa la segunda línea: ", terminator: "")
+            let lineaB = readLine() ?? ""
+            print(mensajeParaCorrespondencia(lineaA, lineaB))
+
+        case "3":
+            print("Saliendo del sistema de consulta.")
+            continuar = false
+
+        default:
+            print("Opción inválida. Ingresa 1, 2 o 3.")
+        }
+    }
+}
+
+ejecutarMenu()
