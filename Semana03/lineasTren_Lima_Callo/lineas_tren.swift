@@ -60,3 +60,37 @@ let correspondencias: [Correspondencia] = [
         estado: .proyectada
     )
 ]
+
+
+enum ResultadoConsultaLinea {
+    case estaciones([String])
+    case sinEstacionesRegistradas
+    case lineaNoRegistrada
+}
+
+func estacionesDeLinea(_ identificadorIngresado: String) -> ResultadoConsultaLinea {
+    let identificador = identificadorIngresado.trimmingCharacters(in: .whitespacesAndNewlines)
+
+    guard let linea = lineas.first(where: {
+        $0.identificador.compare(identificador, options: .caseInsensitive) == .orderedSame
+    }) else {
+        return .lineaNoRegistrada
+    }
+
+    if linea.estaciones.isEmpty {
+        return .sinEstacionesRegistradas
+    }
+
+    return .estaciones(linea.estaciones)
+}
+
+func mensajeParaConsultaLinea(_ identificador: String) -> String {
+    switch estacionesDeLinea(identificador) {
+    case .estaciones(let estaciones):
+        return "\(identificador) → \(estaciones.joined(separator: ", "))"
+    case .sinEstacionesRegistradas:
+        return "\(identificador) está registrada pero aún no tiene estaciones definidas (proyecto en fase de planificación)."
+    case .lineaNoRegistrada:
+        return "La línea \"\(identificador)\" no está registrada."
+    }
+}
