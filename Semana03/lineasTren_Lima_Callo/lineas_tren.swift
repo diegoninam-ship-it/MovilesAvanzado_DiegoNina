@@ -158,3 +158,73 @@ print(mensajeParaCorrespondencia("Línea 3", "Línea 4"))   // sin correspondenc
 print(mensajeParaCorrespondencia("Línea 1", "Línea 1"))   // misma línea
 print(mensajeParaCorrespondencia("Línea 1", "Línea 9"))   // línea inexistente
 print(mensajeParaCorrespondencia("", "Línea 2"))          // entrada inválida
+
+
+var pruebasFallidas = 0
+
+func verificar(_ descripcion: String, _ condicion: Bool) {
+    if condicion {
+        print("✅ \(descripcion)")
+    } else {
+        print("❌ \(descripcion)")
+        pruebasFallidas += 1
+    }
+}
+
+// RF-01: línea existente
+if case .estaciones(let estaciones) = estacionesDeLinea("Línea 1") {
+    verificar("Línea 1 devuelve 26 estaciones", estaciones.count == 26)
+} else {
+    verificar("Línea 1 devuelve estaciones", false)
+}
+
+// RF-01: línea inexistente
+if case .lineaNoRegistrada = estacionesDeLinea("Línea 9") {
+    verificar("Línea 9 no está registrada", true)
+} else {
+    verificar("Línea 9 no está registrada", false)
+}
+
+// RF-01: línea registrada sin estaciones (proyectada)
+if case .sinEstacionesRegistradas = estacionesDeLinea("Línea 3") {
+    verificar("Línea 3 registrada sin estaciones", true)
+} else {
+    verificar("Línea 3 registrada sin estaciones", false)
+}
+
+// RF-02: dos líneas con correspondencia
+if case .encontrada(let c) = correspondenciaEntre("Línea 1", "Línea 2") {
+    verificar("Correspondencia L1-L2 es Gamarra/28 de Julio", c.estacionA == "Gamarra" && c.estacionB == "28 de Julio")
+} else {
+    verificar("Correspondencia L1-L2 encontrada", false)
+}
+
+// RF-02: mismo resultado en orden invertido
+if case .encontrada = correspondenciaEntre("Línea 2", "Línea 1") {
+    verificar("Correspondencia L2-L1 (orden invertido) encontrada", true)
+} else {
+    verificar("Correspondencia L2-L1 (orden invertido) encontrada", false)
+}
+
+// RF-02: dos líneas sin correspondencia
+if case .sinCorrespondencia = correspondenciaEntre("Línea 3", "Línea 4") {
+    verificar("Línea 3 y Línea 4 sin correspondencia", true)
+} else {
+    verificar("Línea 3 y Línea 4 sin correspondencia", false)
+}
+
+// RF-02: línea consigo misma
+if case .mismaLinea = correspondenciaEntre("Línea 1", "Línea 1") {
+    verificar("Línea 1 consigo misma detectada como caso inválido", true)
+} else {
+    verificar("Línea 1 consigo misma detectada como caso inválido", false)
+}
+
+// RF-02: entrada inválida
+if case .lineaNoRegistrada = correspondenciaEntre("", "Línea 2") {
+    verificar("Entrada vacía detectada como línea no registrada", true)
+} else {
+    verificar("Entrada vacía detectada como línea no registrada", false)
+}
+
+print("\nResumen: \(pruebasFallidas == 0 ? "todas las pruebas pasaron" : "\(pruebasFallidas) prueba(s) fallaron")")
