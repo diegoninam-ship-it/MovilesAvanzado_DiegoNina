@@ -25,6 +25,19 @@ class SucursalLima: Sucursal {
     }
 }
 
+class SucursalProvincia: Sucursal {
+    // No se sobreescribe descuento(): hereda el 0.05 de la clase base
+
+    override func costoEnvio(monto: Double) -> Double {
+        let envioCalculado = monto * 0.08
+        if envioCalculado < 50.0 {
+            return 50.0
+        } else {
+            return envioCalculado
+        }
+    }
+}
+
 class SucursalOutlet: Sucursal {
     override func descuento() -> Double {
         return 0.25
@@ -34,3 +47,4 @@ class SucursalOutlet: Sucursal {
         return 0.0
     }
 }
+
