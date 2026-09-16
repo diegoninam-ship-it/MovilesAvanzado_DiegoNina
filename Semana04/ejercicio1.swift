@@ -48,6 +48,12 @@ class SucursalOutlet: Sucursal {
     }
 }
 
+class SucursalOnline: Sucursal {
+    override func costoEnvio(monto: Double) -> Double {
+        return 15.0
+    }
+}
+
 // FIX 8: no compila. Que llamada falta al final del init? Porque a medias tintas inicializo el constructor, ya que hacía falta delegar la super clase para que termine de inicializar lo heredado.
 
 
@@ -70,3 +76,4 @@ print("===== Licuadora (S/ 250.0) =====")
 for sucursal in sucursales {
     sucursal.cotizar(item: licuadora)
 }
+
