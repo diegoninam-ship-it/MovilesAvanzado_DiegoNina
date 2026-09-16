@@ -54,6 +54,24 @@ class SucursalOnline: Sucursal {
     }
 }
 
+
+class SucursalMall: Sucursal {
+    override func descuento() -> Double {
+        return 0.12
+    }
+}
+
+ // FIX 7: no compila. Que palabra clave falta y por que Swift la exige? Porque falta Override, sin esa palabra reservada swift no es capaz de indentificar si quiero reemplazar el método de la superclase o si accidentalmente escribiste un método nuevo
+
+class SucursalExpress: Sucursal {
+    let radioKm: Int
+
+    init(nombre: String, ciudad: String, radioKm: Int) {
+        self.radioKm = radioKm
+        super.init(nombre: nombre, ciudad: ciudad)
+    }
+}
+
 // FIX 8: no compila. Que llamada falta al final del init? Porque a medias tintas inicializo el constructor, ya que hacía falta delegar la super clase para que termine de inicializar lo heredado.
 
 
@@ -76,4 +94,3 @@ print("===== Licuadora (S/ 250.0) =====")
 for sucursal in sucursales {
     sucursal.cotizar(item: licuadora)
 }
-
