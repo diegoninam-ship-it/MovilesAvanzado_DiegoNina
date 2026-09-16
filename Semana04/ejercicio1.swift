@@ -94,3 +94,10 @@ print("===== Licuadora (S/ 250.0) =====")
 for sucursal in sucursales {
     sucursal.cotizar(item: licuadora)
 }
+
+// Responde en un comentario: cuantas lineas nuevas necesitaste? 5 lineas
+
+let misteriosa: Sucursal = SucursalLima(nombre: "Lima Centro", ciudad: "Lima")
+print(misteriosa.descuento())               // PREDICT 6 → 0.1
+let monto = 2000.0 * (1 - misteriosa.descuento())
+print(misteriosa.costoEnvio(monto: monto))  // PREDICT 7 → 0.0
