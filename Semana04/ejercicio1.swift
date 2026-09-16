@@ -48,3 +48,25 @@ class SucursalOutlet: Sucursal {
     }
 }
 
+// FIX 8: no compila. Que llamada falta al final del init? Porque a medias tintas inicializo el constructor, ya que hacía falta delegar la super clase para que termine de inicializar lo heredado.
+
+
+let refrigeradora = Electrodomestico(nombre: "Refrigeradora", marca: "Frost", precioLista: 2000.0, categoria: .lineaBlanca)
+let licuadora = Electrodomestico(nombre: "Licuadora", marca: "Mix", precioLista: 250.0, categoria: .pequenos)
+
+let sucursales: [Sucursal] = [
+    SucursalLima(nombre: "Lima Centro", ciudad: "Lima"),
+    SucursalProvincia(nombre: "Provincia Cusco", ciudad: "Cusco"),
+    SucursalOutlet(nombre: "Outlet Ate", ciudad: "Lima"),
+    SucursalOnline(nombre: "Tienda Online", ciudad: "Nacional")
+]
+
+print("===== Refrigeradora (S/ 2000.0) =====")
+for sucursal in sucursales {
+    sucursal.cotizar(item: refrigeradora)
+}
+
+print("===== Licuadora (S/ 250.0) =====")
+for sucursal in sucursales {
+    sucursal.cotizar(item: licuadora)
+}
