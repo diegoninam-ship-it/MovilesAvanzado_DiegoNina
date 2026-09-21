@@ -32,5 +32,11 @@ class ViewController: UIViewController {
         // Fórmula de amortización: M = P * [r(1+r)^n] / [(1+r)^n - 1]
         let factor = pow(1 + r, n)
         let cuotaMensual = capital * (r * factor) / (factor - 1)
+
+        // Calcular el monto total a pagar (cuota mensual × número de pagos)
+        let montoTotal = cuotaMensual * n
+
+        // Mostrar el resultado formateado
+        resultLabel.text = "Cuota mensual: S/. \(String(format: "%.2f", cuotaMensual))\nMonto total a pagar: S/. \(String(format: "%.2f", montoTotal))"
     }
 }
