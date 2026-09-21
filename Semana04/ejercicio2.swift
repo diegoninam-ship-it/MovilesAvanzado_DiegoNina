@@ -14,8 +14,8 @@ struct Libro { // struct: es un dato que se copia sin problema (valor)
 class Biblioteca { // class: debe ser una única instancia compartida (referencia)
     var libros: [Libro] = [] // colección mutable, empieza vacía
 
-    func agregar(libro: Libro) { // añade un libro nuevo
-        libros.append(libro) // append inserta al final del array
+    func agregar(libro: Libro) { 
+        libros.append(libro) 
     }
 
     func prestar(titulo: String) -> Bool { // intenta marcar un libro como prestado
@@ -65,7 +65,6 @@ class Biblioteca { // class: debe ser una única instancia compartida (referenci
     }
 }
 
-// --- Simulación (idéntica a la Parte A) ---
 let biblioteca = Biblioteca() // instancia única
 biblioteca.agregar(libro: Libro(titulo: "Cien años de soledad", autor: "Gabriel García Márquez"))
 biblioteca.agregar(libro: Libro(titulo: "La ciudad y los perros", autor: "Mario Vargas Llosa"))
