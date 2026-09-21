@@ -24,5 +24,13 @@ class ViewController: UIViewController {
             resultLabel.text = "Por favor, ingresa valores válidos."
             return
         }
+
+        // Convertir tasa anual a tasa mensual, y años a número de pagos
+        let r = (tasaAnual / 100) / 12
+        let n = plazoAnios * 12
+
+        // Fórmula de amortización: M = P * [r(1+r)^n] / [(1+r)^n - 1]
+        let factor = pow(1 + r, n)
+        let cuotaMensual = capital * (r * factor) / (factor - 1)
     }
 }
