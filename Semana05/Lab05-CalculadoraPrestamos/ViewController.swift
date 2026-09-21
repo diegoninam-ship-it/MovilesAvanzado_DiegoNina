@@ -12,4 +12,17 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         resultLabel.text = "Ingresa capital, tasa y plazo"
     }
+
+    @IBAction func calcularPrestamo(_ sender: Any) {
+        // Obtener los valores ingresados
+        let capital = Double(capitalTextField.text ?? "") ?? 0
+        let tasaAnual = Double(tasaTextField.text ?? "") ?? 0
+        let plazoAnios = Double(plazoTextField.text ?? "") ?? 0
+
+        // Validar que ningún valor esté vacío o en cero
+        if capital == 0 || tasaAnual == 0 || plazoAnios == 0 {
+            resultLabel.text = "Por favor, ingresa valores válidos."
+            return
+        }
+    }
 }
