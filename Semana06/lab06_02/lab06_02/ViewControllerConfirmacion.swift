@@ -13,14 +13,34 @@ class ViewControllerConfirmacion: UIViewController {
     @IBOutlet weak var tfApellido:UILabel!
     @IBOutlet weak var tfNombre:UILabel!
     @IBOutlet weak var tfDni:UILabel!
+    private let botonVolver: UIButton = UIButton(type: .system)
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tfApellido.text = pCliente.Apellido
         self.tfNombre.text = pCliente.Nombre
         self.tfDni.text = pCliente.Dni
-        // Do any additional setup after loading the view.
+        configurarBotonVolver()
     }
-    
+
+    // MARK: - UI por codigo
+
+    private func configurarBotonVolver() {
+        botonVolver.setTitle("Volver", for: .normal)
+        botonVolver.translatesAutoresizingMaskIntoConstraints = false
+        botonVolver.addTarget(self, action: #selector(volverPresionado), for: .touchUpInside)
+        view.addSubview(botonVolver)
+
+        NSLayoutConstraint.activate([
+            botonVolver.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            botonVolver.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40)
+        ])
+    }
+
+    @objc private func volverPresionado() {
+        dismiss(animated: true)
+    }
+
 
     /*
     // MARK: - Navigation
