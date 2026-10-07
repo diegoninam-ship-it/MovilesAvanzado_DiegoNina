@@ -91,7 +91,7 @@
         <!--View Controller Confirmacion-->
         <scene sceneID="AdB-Ay-pkf">
             <objects>
-                <viewController id="arj-fB-N6e" customClass="ViewControllerConfirmacion" customModule="lab06_02" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="arj-fB-N6e" storyboardIdentifier="ViewControllerConfirmacion" customClass="ViewControllerConfirmacion" customModule="lab06_02" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gOp-qH-47L">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
