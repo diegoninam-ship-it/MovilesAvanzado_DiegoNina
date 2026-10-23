@@ -35,6 +35,12 @@ struct MenuPrincipal: View {
                 } label: {
                     Label("Calculadora de CTS", systemImage: "banknote.fill")
                 }
+
+                NavigationLink {
+                    PagoInstructoresView()
+                } label: {
+                    Label("Pago de instructores", systemImage: "person.text.rectangle.fill")
+                }
             }
             .navigationTitle("Lab08 SwiftUI")
         }
