@@ -41,6 +41,12 @@ struct MenuPrincipal: View {
                 } label: {
                     Label("Pago de instructores", systemImage: "person.text.rectangle.fill")
                 }
+
+                NavigationLink {
+                    CuentasView()
+                } label: {
+                    Label("Cuentas por cobrar y pagar", systemImage: "chart.bar.doc.horizontal.fill")
+                }
             }
             .navigationTitle("Lab08 SwiftUI")
         }
