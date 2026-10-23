@@ -23,6 +23,12 @@ struct MenuPrincipal: View {
                 } label: {
                     Label("Ventana 03 – Peso ideal", systemImage: "scalemass.fill")
                 }
+
+                NavigationLink {
+                    NotasView()
+                } label: {
+                    Label("Promedio de notas", systemImage: "checklist")
+                }
             }
             .navigationTitle("Lab08 SwiftUI")
         }
