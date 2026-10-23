@@ -29,6 +29,12 @@ struct MenuPrincipal: View {
                 } label: {
                     Label("Promedio de notas", systemImage: "checklist")
                 }
+
+                NavigationLink {
+                    CTSView()
+                } label: {
+                    Label("Calculadora de CTS", systemImage: "banknote.fill")
+                }
             }
             .navigationTitle("Lab08 SwiftUI")
         }
