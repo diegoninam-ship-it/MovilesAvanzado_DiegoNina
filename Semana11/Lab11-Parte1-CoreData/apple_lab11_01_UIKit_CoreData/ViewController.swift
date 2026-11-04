@@ -142,4 +142,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         present(alerta, animated: true)
     }
 
+    // MARK: - DELETE
+
+    func eliminarContacto(at indexPath: IndexPath) {
+        let contacto = contactos[indexPath.row]
+        let contexto = conexion()
+        contexto.delete(contacto)
+
+        do {
+            try contexto.save()
+            cargarInfoCoreData()
+        } catch {
+            print("Error al eliminar contacto: \(error)")
+        }
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            eliminarContacto(at: indexPath)
+        }
+    }
+
 }
