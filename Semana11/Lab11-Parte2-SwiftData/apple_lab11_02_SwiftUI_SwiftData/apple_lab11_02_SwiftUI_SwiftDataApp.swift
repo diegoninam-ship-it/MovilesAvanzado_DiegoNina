@@ -1,6 +1,7 @@
 // Desarrollado por: Diego Nina Malqui
 
 import SwiftUI
+import SwiftData
 
 @main
 struct apple_lab11_02_SwiftUI_SwiftDataApp: App {
@@ -8,5 +9,6 @@ struct apple_lab11_02_SwiftUI_SwiftDataApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(ModelContainerProvider.shared.container)
     }
 }
