@@ -25,8 +25,12 @@ struct ContentView: View {
                     NavigationLink {
                         VStack(alignment: .leading) {
                             Text("\(alumno.apellido), \(alumno.nombre) - DNI: \(alumno.dni)")
+                            Text("Curso: \(alumno.curso?.nombre ?? "Sin curso")")
                             Button("Editar") {
                                 alumnoAEditar = alumno
+                            }
+                            Button("Asignar Curso Demo") {
+                                asignarCursoDemo(a: alumno)
                             }
                         }
                     } label: {
@@ -63,9 +67,21 @@ struct ContentView: View {
             modelContext.delete(alumnosFiltrados[index])
         }
     }
+
+    private func asignarCursoDemo(a alumno: Alumno) {
+        let curso = Curso(nombre: "Moviles Avanzado")
+        modelContext.insert(curso)
+        alumno.curso = curso
+
+        do {
+            try modelContext.save()
+        } catch {
+            print("Error al asignar curso: \(error)")
+        }
+    }
 }
 
 #Preview {
     ContentView()
-        .modelContainer(for: [Alumno.self], inMemory: true)
+        .modelContainer(for: [Alumno.self, Curso.self], inMemory: true)
 }
