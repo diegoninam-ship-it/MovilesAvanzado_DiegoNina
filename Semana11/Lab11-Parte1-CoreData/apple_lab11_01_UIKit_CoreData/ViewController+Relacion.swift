@@ -18,4 +18,26 @@ extension ViewController {
         }
     }
 
+    func probarRelacion() {
+        let contexto = conexion()
+
+        let grupo = NSEntityDescription.insertNewObject(forEntityName: "Grupo", into: contexto) as! Grupo
+        grupo.nombre = "Familia"
+
+        if let contacto = contactos.first {
+            contacto.grupo = grupo
+        }
+
+        do {
+            try contexto.save()
+        } catch {
+            print("Error al probar relacion: \(error)")
+        }
+    }
+
+    func contactosDelGrupo(_ grupo: Grupo) -> [Contacto] {
+        let conjunto = grupo.contactos as? Set<Contacto> ?? []
+        return conjunto.sorted { ($0.nombre ?? "") < ($1.nombre ?? "") }
+    }
+
 }
