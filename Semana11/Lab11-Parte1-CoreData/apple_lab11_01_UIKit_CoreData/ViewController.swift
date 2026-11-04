@@ -10,6 +10,43 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var contactos = [Contacto]()
 
     @IBAction func agregarContacto(_ sender: UIBarButtonItem) {
+        let alerta = UIAlertController(title: "Nuevo Contacto", message: "Ingrese los datos del contacto", preferredStyle: .alert)
+
+        alerta.addTextField { textField in
+            textField.placeholder = "Nombre"
+        }
+        alerta.addTextField { textField in
+            textField.placeholder = "Telefono"
+        }
+        alerta.addTextField { textField in
+            textField.placeholder = "Direccion"
+        }
+
+        let accionGuardar = UIAlertAction(title: "Guardar", style: .default) { _ in
+            guard let nombre = alerta.textFields?[0].text,
+                  let telefono = alerta.textFields?[1].text,
+                  let direccion = alerta.textFields?[2].text else { return }
+
+            let contexto = self.conexion()
+            let nuevoContacto = NSEntityDescription.insertNewObject(forEntityName: "Contacto", into: contexto) as! Contacto
+            nuevoContacto.nombre = nombre
+            nuevoContacto.telefono = telefono
+            nuevoContacto.direccion = direccion
+
+            do {
+                try contexto.save()
+                self.cargarInfoCoreData()
+            } catch {
+                print("Error al guardar contacto: \(error)")
+            }
+        }
+
+        let accionCancelar = UIAlertAction(title: "Cancelar", style: .cancel)
+
+        alerta.addAction(accionGuardar)
+        alerta.addAction(accionCancelar)
+
+        present(alerta, animated: true)
     }
 
     override func viewDidLoad() {
