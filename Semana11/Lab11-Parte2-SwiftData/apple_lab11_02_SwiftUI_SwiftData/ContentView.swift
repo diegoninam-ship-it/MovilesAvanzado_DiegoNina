@@ -9,11 +9,19 @@ struct ContentView: View {
 
     @State private var mostrarNuevoAlumno = false
     @State private var alumnoAEditar: Alumno?
+    @State private var busqueda = ""
+
+    private var alumnosFiltrados: [Alumno] {
+        if busqueda.isEmpty {
+            return alumnos
+        }
+        return alumnos.filter { $0.apellido.localizedCaseInsensitiveContains(busqueda) }
+    }
 
     var body: some View {
         NavigationSplitView {
             List {
-                ForEach(alumnos) { alumno in
+                ForEach(alumnosFiltrados) { alumno in
                     NavigationLink {
                         VStack(alignment: .leading) {
                             Text("\(alumno.apellido), \(alumno.nombre) - DNI: \(alumno.dni)")
@@ -44,6 +52,7 @@ struct ContentView: View {
             .sheet(item: $alumnoAEditar) { alumno in
                 EditarAlumnoView(alumno: alumno)
             }
+            .searchable(text: $busqueda, prompt: "Buscar por apellido")
         } detail: {
             Text("Selecciona un alumno")
         }
@@ -51,7 +60,7 @@ struct ContentView: View {
 
     private func deleteAlumnos(offsets: IndexSet) {
         for index in offsets {
-            modelContext.delete(alumnos[index])
+            modelContext.delete(alumnosFiltrados[index])
         }
     }
 }
