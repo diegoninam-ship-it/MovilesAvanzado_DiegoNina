@@ -96,4 +96,50 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return celda
     }
 
+    // MARK: - UPDATE
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let contacto = contactos[indexPath.row]
+
+        let alerta = UIAlertController(title: "Editar Contacto", message: "Modifique los datos del contacto", preferredStyle: .alert)
+
+        alerta.addTextField { textField in
+            textField.placeholder = "Nombre"
+            textField.text = contacto.nombre
+        }
+        alerta.addTextField { textField in
+            textField.placeholder = "Telefono"
+            textField.text = contacto.telefono
+        }
+        alerta.addTextField { textField in
+            textField.placeholder = "Direccion"
+            textField.text = contacto.direccion
+        }
+
+        let accionGuardar = UIAlertAction(title: "Guardar", style: .default) { _ in
+            guard let nombre = alerta.textFields?[0].text,
+                  let telefono = alerta.textFields?[1].text,
+                  let direccion = alerta.textFields?[2].text else { return }
+
+            contacto.nombre = nombre
+            contacto.telefono = telefono
+            contacto.direccion = direccion
+
+            do {
+                try self.conexion().save()
+                self.cargarInfoCoreData()
+            } catch {
+                print("Error al actualizar contacto: \(error)")
+            }
+        }
+
+        let accionCancelar = UIAlertAction(title: "Cancelar", style: .cancel)
+
+        alerta.addAction(accionGuardar)
+        alerta.addAction(accionCancelar)
+
+        present(alerta, animated: true)
+    }
+
 }
