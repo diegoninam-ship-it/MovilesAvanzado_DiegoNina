@@ -8,13 +8,19 @@ struct ContentView: View {
     @Query(sort: \Alumno.apellido) private var alumnos: [Alumno]
 
     @State private var mostrarNuevoAlumno = false
+    @State private var alumnoAEditar: Alumno?
 
     var body: some View {
         NavigationSplitView {
             List {
                 ForEach(alumnos) { alumno in
                     NavigationLink {
-                        Text("\(alumno.apellido), \(alumno.nombre) - DNI: \(alumno.dni)")
+                        VStack(alignment: .leading) {
+                            Text("\(alumno.apellido), \(alumno.nombre) - DNI: \(alumno.dni)")
+                            Button("Editar") {
+                                alumnoAEditar = alumno
+                            }
+                        }
                     } label: {
                         Text("\(alumno.apellido), \(alumno.nombre)")
                     }
@@ -34,6 +40,9 @@ struct ContentView: View {
             }
             .sheet(isPresented: $mostrarNuevoAlumno) {
                 NuevoAlumnoView()
+            }
+            .sheet(item: $alumnoAEditar) { alumno in
+                EditarAlumnoView(alumno: alumno)
             }
         } detail: {
             Text("Selecciona un alumno")
