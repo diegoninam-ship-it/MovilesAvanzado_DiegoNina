@@ -37,45 +37,73 @@ struct PorPagarView: View {
     var body: some View {
         List {
             Section {
-                HStack {
-                    Text("Total por pagar")
-                    Spacer()
-                    Text(String(format: "S/. %.2f", totalPorPagar)).bold()
+                TarjetaGlass {
+                    HStack {
+                        VStack(alignment: .leading, spacing: Espaciado.xs) {
+                            Text("Total por pagar")
+                                .font(Tipografia.caption)
+                                .foregroundStyle(Color.textoSecundario)
+                            CifraAnimada(valor: totalPorPagar, fuente: .system(size: 26, weight: .bold, design: .rounded))
+                        }
+                        Spacer()
+                        Image(systemName: "banknote.fill")
+                            .font(.title)
+                            .foregroundStyle(Color.advertencia)
+                    }
                 }
+                .listRowSeparator(.hidden)
+                .listRowBackground(Color.clear)
             }
 
-            ForEach(comprasFiltradas) { compra in
-                VStack(alignment: .leading, spacing: 4) {
-                    HStack {
-                        Text(compra.proveedor?.nombre ?? "—")
-                            .font(.headline)
-                        Spacer()
-                        if esVencida(compra) {
-                            Text("VENCIDA")
-                                .font(.caption2.bold())
-                                .padding(.horizontal, 6)
-                                .padding(.vertical, 2)
-                                .background(Color.red.opacity(0.15))
-                                .foregroundStyle(.red)
-                                .clipShape(Capsule())
+            if comprasFiltradas.isEmpty {
+                EstadoVacio(icono: "checkmark.circle", titulo: "Nada por aquí", subtitulo: "No hay compras en este filtro.")
+                    .listRowSeparator(.hidden)
+                    .listRowBackground(Color.clear)
+            }
+
+            ForEach(Array(comprasFiltradas.enumerated()), id: \.element.id) { indice, compra in
+                TarjetaGlass {
+                    HStack(alignment: .top, spacing: Espaciado.m) {
+                        Image(systemName: "building.columns.fill")
+                            .font(.title3)
+                            .foregroundStyle(Color.acentoPrimario)
+                            .frame(width: 32)
+
+                        VStack(alignment: .leading, spacing: Espaciado.xs) {
+                            HStack {
+                                Text(compra.proveedor?.nombre ?? "—")
+                                    .font(Tipografia.tituloTarjeta)
+                                if esVencida(compra) {
+                                    InsigniaEstado(texto: "Vencida", color: .peligro)
+                                }
+                            }
+                            Text("Producto: \(compra.producto?.nombre ?? "—")")
+                                .font(Tipografia.caption)
+                                .foregroundStyle(Color.textoSecundario)
+                            Text("Total: " + String(format: "S/. %.2f", compra.total) + " · Vence: \(compra.vence.formatted(date: .abbreviated, time: .omitted))")
+                                .font(Tipografia.caption)
                         }
+                        Spacer()
                     }
-                    Text("Producto: \(compra.producto?.nombre ?? "—")")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                    Text("Total: " + String(format: "S/. %.2f", compra.total) + " · Vence: \(compra.vence.formatted(date: .abbreviated, time: .omitted))")
-                        .font(.caption)
                 }
+                .apareceEscalonado(indice: indice)
+                .listRowSeparator(.hidden)
+                .listRowBackground(Color.clear)
                 .swipeActions {
                     if !compra.pagada {
-                        Button("Pagar") {
+                        Button {
                             compra.pagada = true
+                        } label: {
+                            Label("Pagar", systemImage: "checkmark.circle.fill")
                         }
-                        .tint(.green)
+                        .tint(.exito)
                     }
                 }
             }
         }
+        .listStyle(.plain)
+        .scrollContentBackground(.hidden)
+        .background(Color.fondoApp)
         .navigationTitle("Por Pagar")
         .menuCuenta()
         .safeAreaInset(edge: .top) {
@@ -83,7 +111,8 @@ struct PorPagarView: View {
                 ForEach(FiltroPorPagar.allCases, id: \.self) { Text($0.rawValue) }
             }
             .pickerStyle(.segmented)
-            .padding()
+            .padding(Espaciado.l)
+            .background(.ultraThinMaterial)
         }
     }
 }

@@ -13,23 +13,45 @@ struct ProveedoresView: View {
 
     var body: some View {
         List {
-            ForEach(proveedores) { proveedor in
-                VStack(alignment: .leading, spacing: 4) {
-                    HStack {
-                        Text(proveedor.nombre)
-                            .font(.headline)
+            if proveedores.isEmpty {
+                EstadoVacio(icono: "building.2", titulo: "Sin proveedores", subtitulo: "Aún no hay proveedores registrados.")
+                    .listRowSeparator(.hidden)
+                    .listRowBackground(Color.clear)
+            }
+
+            ForEach(Array(proveedores.enumerated()), id: \.element.id) { indice, proveedor in
+                TarjetaGlass {
+                    HStack(alignment: .top, spacing: Espaciado.m) {
+                        Image(systemName: "building.2.fill")
+                            .font(.title3)
+                            .foregroundStyle(Color.acentoPrimario)
+                            .frame(width: 32)
+
+                        VStack(alignment: .leading, spacing: Espaciado.xs) {
+                            HStack {
+                                Text(proveedor.nombre)
+                                    .font(Tipografia.tituloTarjeta)
+                                insignia(proveedor)
+                            }
+                            Text("RUC: \(proveedor.ruc)")
+                                .font(Tipografia.caption)
+                                .foregroundStyle(Color.textoSecundario)
+                            Text("Total comprado: " + String(format: "S/. %.2f", totalComprado(proveedor)))
+                                .font(.caption.bold())
+                        }
+
                         Spacer()
-                        insignia(proveedor)
                     }
-                    Text("RUC: \(proveedor.ruc)")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                    Text("Total comprado: " + String(format: "S/. %.2f", totalComprado(proveedor)))
-                        .font(.caption)
                 }
+                .apareceEscalonado(indice: indice)
+                .listRowSeparator(.hidden)
+                .listRowBackground(Color.clear)
             }
             .onDelete(perform: esSupervisor ? borrar : nil)
         }
+        .listStyle(.plain)
+        .scrollContentBackground(.hidden)
+        .background(Color.fondoApp)
         .navigationTitle("Proveedores")
         .menuCuenta()
         .toolbar {
@@ -60,13 +82,7 @@ struct ProveedoresView: View {
     @ViewBuilder
     private func insignia(_ proveedor: Proveedor) -> some View {
         let tienePorPagar = proveedor.compras.contains { !$0.pagada }
-        Text(tienePorPagar ? "Por pagar" : "Al día")
-            .font(.caption2.bold())
-            .padding(.horizontal, 8)
-            .padding(.vertical, 2)
-            .background(tienePorPagar ? Color.red.opacity(0.15) : Color.green.opacity(0.15))
-            .foregroundStyle(tienePorPagar ? .red : .green)
-            .clipShape(Capsule())
+        InsigniaEstado(texto: tienePorPagar ? "Por pagar" : "Al día", color: tienePorPagar ? .peligro : .exito)
     }
 
     private func borrar(at offsets: IndexSet) {

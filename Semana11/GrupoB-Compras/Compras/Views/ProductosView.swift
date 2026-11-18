@@ -19,26 +19,59 @@ struct ProductosView: View {
 
     var body: some View {
         List {
-            ForEach(productosFiltrados) { producto in
-                VStack(alignment: .leading, spacing: 4) {
-                    HStack {
-                        Text(producto.nombre)
-                            .font(.headline)
+            if productosFiltrados.isEmpty {
+                EstadoVacio(
+                    icono: "shippingbox",
+                    titulo: "Sin productos",
+                    subtitulo: busqueda.isEmpty ? "Aún no hay productos registrados." : "No hay resultados para \"\(busqueda)\"."
+                )
+                .listRowSeparator(.hidden)
+                .listRowBackground(Color.clear)
+            }
+
+            ForEach(Array(productosFiltrados.enumerated()), id: \.element.id) { indice, producto in
+                TarjetaGlass {
+                    HStack(alignment: .top, spacing: Espaciado.m) {
+                        Image(systemName: "shippingbox.fill")
+                            .font(.title3)
+                            .foregroundStyle(Color.acentoPrimario)
+                            .frame(width: 32)
+
+                        VStack(alignment: .leading, spacing: Espaciado.xs) {
+                            Text(producto.nombre)
+                                .font(Tipografia.tituloTarjeta)
+                            Text(producto.categoria)
+                                .font(Tipografia.caption)
+                                .foregroundStyle(Color.textoSecundario)
+                            HStack(spacing: Espaciado.xs) {
+                                Circle()
+                                    .fill(colorStock(producto.stock))
+                                    .frame(width: 8, height: 8)
+                                Text("Stock: \(producto.stock)")
+                                    .font(Tipografia.caption)
+                            }
+                        }
+
                         Spacer()
-                        Text(String(format: "S/. %.2f", producto.costoPromedio))
-                    }
-                    HStack {
-                        Text("Stock: \(producto.stock)")
-                            .foregroundStyle(colorStock(producto.stock))
-                        Spacer()
-                        Text("Valor inventario: " + String(format: "S/. %.2f", Double(producto.stock) * producto.costoPromedio))
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
+
+                        VStack(alignment: .trailing, spacing: Espaciado.xs) {
+                            Text(String(format: "S/. %.2f", producto.costoPromedio))
+                                .font(.subheadline.bold())
+                            Text("Inv: " + String(format: "S/. %.2f", Double(producto.stock) * producto.costoPromedio))
+                                .font(.caption2)
+                                .foregroundStyle(Color.textoSecundario)
+                        }
                     }
                 }
+                .apareceEscalonado(indice: indice)
+                .listRowSeparator(.hidden)
+                .listRowBackground(Color.clear)
             }
             .onDelete(perform: esSupervisor ? borrar : nil)
         }
+        .listStyle(.plain)
+        .scrollContentBackground(.hidden)
+        .background(Color.fondoApp)
         .searchable(text: $busqueda, prompt: "Buscar producto")
         .navigationTitle("Productos")
         .menuCuenta()
@@ -64,9 +97,9 @@ struct ProductosView: View {
     }
 
     private func colorStock(_ stock: Int) -> Color {
-        if stock > 10 { return .green }
-        if stock >= 6 { return .orange }
-        return .red
+        if stock > 10 { return .exito }
+        if stock >= 6 { return .advertencia }
+        return .peligro
     }
 
     private func borrar(at offsets: IndexSet) {
