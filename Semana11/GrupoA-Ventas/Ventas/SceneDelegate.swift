@@ -15,7 +15,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = UIViewController()
+        // La app siempre arranca en Login; la sesión no se recuerda entre lanzamientos.
+        window.rootViewController = UINavigationController(rootViewController: LoginViewController())
         self.window = window
         window.makeKeyAndVisible()
     }
