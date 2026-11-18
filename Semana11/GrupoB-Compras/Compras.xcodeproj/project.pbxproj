@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		25CC4F226A494CA2250E155D /* Colores.swift in Sources */ = {isa = PBXBuildFile; fileRef = C593E6175EA7E0B2C48FB985 /* Colores.swift */; };
+		417B733DB03E4192D87449C3 /* Tipografia.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9633A67AB89143B06F36DAA /* Tipografia.swift */; };
+		F0E474B14DFE0FD53426293E /* Espaciado.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B505533A8CB9FC013A544F /* Espaciado.swift */; };
+		1EF0701069482B69FDFFFA28 /* TarjetaGlass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F636A515F2B179B64D85509 /* TarjetaGlass.swift */; };
+		76AE3BF39DFBC1CD2638F587 /* InsigniaEstado.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481D74C72032A245978D56AB /* InsigniaEstado.swift */; };
+		04E47D635B38ABEBD328FE32 /* Botones.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA006A28842363F99C647CD4 /* Botones.swift */; };
+		1F5ECA86C03175636779F75B /* CifraAnimada.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D33F79C9BEA8428506524FD /* CifraAnimada.swift */; };
+		2CBE20021E46337A1C025292 /* EstadoVacio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D711316E27782F96DFD91 /* EstadoVacio.swift */; };
 		3F159C58CFF8D2FB2D026FB2 /* ComprasApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325E4EB0FCE552AFCB3B2D5D /* ComprasApp.swift */; };
 		AE6ABB91D8D76CC1398066FF /* SesionUsuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981BC04D6E28A193654C2AAC /* SesionUsuario.swift */; };
 		F135D2F76DA5F35093400782 /* Usuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = C896C1FB4AFF0D084B45AE73 /* Usuario.swift */; };
@@ -38,6 +46,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C593E6175EA7E0B2C48FB985 /* Colores.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colores.swift"; sourceTree = "<group>"; };
+		A9633A67AB89143B06F36DAA /* Tipografia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tipografia.swift"; sourceTree = "<group>"; };
+		87B505533A8CB9FC013A544F /* Espaciado.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Espaciado.swift"; sourceTree = "<group>"; };
+		4F636A515F2B179B64D85509 /* TarjetaGlass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TarjetaGlass.swift"; sourceTree = "<group>"; };
+		481D74C72032A245978D56AB /* InsigniaEstado.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InsigniaEstado.swift"; sourceTree = "<group>"; };
+		FA006A28842363F99C647CD4 /* Botones.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Botones.swift"; sourceTree = "<group>"; };
+		0D33F79C9BEA8428506524FD /* CifraAnimada.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CifraAnimada.swift"; sourceTree = "<group>"; };
+		868D711316E27782F96DFD91 /* EstadoVacio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EstadoVacio.swift"; sourceTree = "<group>"; };
 		325E4EB0FCE552AFCB3B2D5D /* ComprasApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ComprasApp.swift"; sourceTree = "<group>"; };
 		981BC04D6E28A193654C2AAC /* SesionUsuario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SesionUsuario.swift"; sourceTree = "<group>"; };
 		C896C1FB4AFF0D084B45AE73 /* Usuario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Usuario.swift"; sourceTree = "<group>"; };
@@ -103,6 +119,8 @@
 				981BC04D6E28A193654C2AAC /* SesionUsuario.swift */,
 				150DA4A154F11DB733B8C54C /* Models */,
 				B4D67A8D33987AA64D795675 /* Views */,
+				6DECDBB59742ECDA7AB2C16B /* DesignSystem */,
+				EBCEACB8918E3B51AC5D30D3 /* Componentes */,
 				DFED14CC13EC37712A5C0935 /* Assets.xcassets */,
 			);
 			path = Compras;
@@ -142,6 +160,28 @@
 				0B4B92943C68A5AC67C7B6E6 /* ComprasTests.swift */,
 			);
 			path = ComprasTests;
+			sourceTree = "<group>";
+		};
+		6DECDBB59742ECDA7AB2C16B /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				C593E6175EA7E0B2C48FB985 /* Colores.swift */,
+				A9633A67AB89143B06F36DAA /* Tipografia.swift */,
+				87B505533A8CB9FC013A544F /* Espaciado.swift */,
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		EBCEACB8918E3B51AC5D30D3 /* Componentes */ = {
+			isa = PBXGroup;
+			children = (
+				4F636A515F2B179B64D85509 /* TarjetaGlass.swift */,
+				481D74C72032A245978D56AB /* InsigniaEstado.swift */,
+				FA006A28842363F99C647CD4 /* Botones.swift */,
+				0D33F79C9BEA8428506524FD /* CifraAnimada.swift */,
+				868D711316E27782F96DFD91 /* EstadoVacio.swift */,
+			);
+			path = Componentes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +299,14 @@
 				FA03DB684B47ABC5DF0E57A3 /* AprobarView.swift in Sources */,
 				0650F27D72E66F0E140DC800 /* PorPagarView.swift in Sources */,
 				2589EEE5BCA5E67E20102B6E /* ResumenView.swift in Sources */,
+				25CC4F226A494CA2250E155D /* Colores.swift in Sources */,
+				417B733DB03E4192D87449C3 /* Tipografia.swift in Sources */,
+				F0E474B14DFE0FD53426293E /* Espaciado.swift in Sources */,
+				1EF0701069482B69FDFFFA28 /* TarjetaGlass.swift in Sources */,
+				76AE3BF39DFBC1CD2638F587 /* InsigniaEstado.swift in Sources */,
+				04E47D635B38ABEBD328FE32 /* Botones.swift in Sources */,
+				1F5ECA86C03175636779F75B /* CifraAnimada.swift in Sources */,
+				2CBE20021E46337A1C025292 /* EstadoVacio.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
