@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import Charts
 
 struct ResumenView: View {
     @Query private var productos: [Producto]
@@ -23,51 +24,91 @@ struct ResumenView: View {
     private var rankingProveedores: [(proveedor: Proveedor, total: Double)] {
         proveedores
             .map { ($0, $0.compras.reduce(0) { $0 + $1.total }) }
+            .filter { $0.1 > 0 }
             .sorted { $0.1 > $1.1 }
     }
 
-    private var maximoRanking: Double {
-        rankingProveedores.map(\.total).max() ?? 0
-    }
+    private let columnas = [GridItem(.adaptive(minimum: 160), spacing: Espaciado.m)]
 
     var body: some View {
-        List {
-            Section("Inventario") {
-                HStack { Text("Valor del inventario"); Spacer(); Text(String(format: "S/. %.2f", valorInventario)).bold() }
-            }
+        ScrollView {
+            VStack(alignment: .leading, spacing: Espaciado.l) {
+                LazyVGrid(columns: columnas, spacing: Espaciado.m) {
+                    TarjetaEstadistica(
+                        icono: "shippingbox.fill",
+                        titulo: "Valor del inventario",
+                        valor: valorInventario,
+                        color: .acentoPrimario
+                    )
+                    TarjetaEstadistica(
+                        icono: "percent",
+                        titulo: "Crédito fiscal",
+                        valor: creditoFiscal,
+                        color: .exito
+                    )
+                    TarjetaEstadistica(
+                        icono: "clock.badge.exclamationmark.fill",
+                        titulo: "Por aprobar (\(comprasPendientes.count))",
+                        valor: importePendiente,
+                        color: .advertencia
+                    )
+                }
 
-            Section("Crédito fiscal") {
-                HStack { Text("Crédito fiscal acumulado"); Spacer(); Text(String(format: "S/. %.2f", creditoFiscal)).bold() }
-                Text("Suma del IGV de las compras aprobadas.")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            }
+                TarjetaGlass {
+                    VStack(alignment: .leading, spacing: Espaciado.m) {
+                        Text("Total comprado por proveedor")
+                            .font(Tipografia.tituloTarjeta)
 
-            Section("Compras por aprobar") {
-                HStack { Text("Cantidad"); Spacer(); Text("\(comprasPendientes.count)") }
-                HStack { Text("Importe"); Spacer(); Text(String(format: "S/. %.2f", importePendiente)) }
-            }
-
-            Section("Total comprado por proveedor") {
-                ForEach(rankingProveedores, id: \.proveedor.id) { item in
-                    VStack(alignment: .leading, spacing: 4) {
-                        HStack {
-                            Text(item.proveedor.nombre)
-                            Spacer()
-                            Text(String(format: "S/. %.2f", item.total))
-                                .font(.caption)
+                        if rankingProveedores.isEmpty {
+                            EstadoVacio(icono: "chart.bar", titulo: "Sin compras aún", subtitulo: "El ranking aparecerá cuando haya compras registradas.")
+                        } else {
+                            Chart(rankingProveedores, id: \.proveedor.id) { item in
+                                BarMark(
+                                    x: .value("Total", item.total),
+                                    y: .value("Proveedor", item.proveedor.nombre)
+                                )
+                                .foregroundStyle(Color.acentoPrimario.gradient)
+                                .cornerRadius(6)
+                            }
+                            .chartXAxis {
+                                AxisMarks { _ in
+                                    AxisGridLine()
+                                    AxisValueLabel()
+                                }
+                            }
+                            .frame(height: CGFloat(rankingProveedores.count) * 44 + 20)
                         }
-                        GeometryReader { geometria in
-                            RoundedRectangle(cornerRadius: 4)
-                                .fill(Color.accentColor)
-                                .frame(width: maximoRanking > 0 ? geometria.size.width * (item.total / maximoRanking) : 0, height: 8)
-                        }
-                        .frame(height: 8)
                     }
                 }
             }
+            .padding(Espaciado.l)
         }
+        .background(Color.fondoApp)
         .navigationTitle("Resumen")
         .menuCuenta()
+    }
+}
+
+private struct TarjetaEstadistica: View {
+    let icono: String
+    let titulo: String
+    let valor: Double
+    let color: Color
+
+    var body: some View {
+        TarjetaGlass {
+            VStack(alignment: .leading, spacing: Espaciado.s) {
+                HStack {
+                    Image(systemName: icono)
+                        .foregroundStyle(color)
+                    Spacer()
+                }
+                Text(titulo)
+                    .font(Tipografia.caption)
+                    .foregroundStyle(Color.textoSecundario)
+                CifraAnimada(valor: valor, fuente: .system(size: 22, weight: .bold, design: .rounded))
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
     }
 }
