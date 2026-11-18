@@ -72,13 +72,6 @@ final class ClientesViewController: UIViewController {
         return ventas.filter { !$0.anulada }.reduce(0) { $0 + $1.total }
     }
 
-    /// Regular si lo comprado es menor a S/ 1,000; Frecuente desde S/ 1,000; VIP desde S/ 5,000 (umbral inclusivo).
-    private func categoria(paraTotal total: Double) -> String {
-        if total >= 5000 { return "VIP" }
-        if total >= 1000 { return "Frecuente" }
-        return "Regular"
-    }
-
     private func iniciales(_ nombre: String) -> String {
         let partes = nombre.split(separator: " ")
         let letras = partes.prefix(2).compactMap { $0.first }
@@ -147,7 +140,7 @@ extension ClientesViewController: UITableViewDataSource, UITableViewDelegate {
         let total = totalComprado(cliente)
 
         celda.textLabel?.text = "\(cliente.nombre ?? "")  ·  \(cliente.documento ?? "")"
-        celda.detailTextLabel?.text = String(format: "S/. %.2f  ·  %@", total, categoria(paraTotal: total))
+        celda.detailTextLabel?.text = String(format: "S/. %.2f  ·  %@", total, CalculoVenta.categoriaCliente(totalComprado: total))
         celda.imageView?.image = avatar(paraIniciales: iniciales(cliente.nombre ?? ""))
         celda.selectionStyle = .default
         return celda
