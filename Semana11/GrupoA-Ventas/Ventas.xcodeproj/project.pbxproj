@@ -6,8 +6,24 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		875A1A36164BF9DFB622A5C7 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 719E025F44B7D5520970BB95 /* XCTest.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9850F200D3209653097E801F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDC0D69D306D523900E85E14 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CDC0D6A4306D523900E85E14;
+			remoteInfo = Ventas;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		CDC0D6A5306D523900E85E14 /* Ventas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ventas.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F14C32607951C883FBC70C79 /* VentasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VentasTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		719E025F44B7D5520970BB95 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -29,6 +45,11 @@
 			path = Ventas;
 			sourceTree = "<group>";
 		};
+		1A39C4F9517EAE59BBC1A4F9 /* VentasTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = VentasTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +60,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D4006980DEF531B8A6B37249 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				875A1A36164BF9DFB622A5C7 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -46,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				CDC0D6A7306D523900E85E14 /* Ventas */,
+				1A39C4F9517EAE59BBC1A4F9 /* VentasTests */,
 				CDC0D6A6306D523900E85E14 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				CDC0D6A5306D523900E85E14 /* Ventas.app */,
+				F14C32607951C883FBC70C79 /* VentasTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -83,6 +114,29 @@
 			productReference = CDC0D6A5306D523900E85E14 /* Ventas.app */;
 			productType = "com.apple.product-type.application";
 		};
+		8C67A2CA37B54104AFCD0FC4 /* VentasTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4498BCDF624BBDE6227C50AE /* Build configuration list for PBXNativeTarget "VentasTests" */;
+			buildPhases = (
+				EA827F0901672C855A8BC838 /* Sources */,
+				D4006980DEF531B8A6B37249 /* Frameworks */,
+				C5F32313C2000CA4EB987896 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C64AD7B5DEA42EC05454BD5B /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				1A39C4F9517EAE59BBC1A4F9 /* VentasTests */,
+			);
+			name = VentasTests;
+			packageProductDependencies = (
+			);
+			productName = VentasTests;
+			productReference = F14C32607951C883FBC70C79 /* VentasTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -95,6 +149,10 @@
 				TargetAttributes = {
 					CDC0D6A4306D523900E85E14 = {
 						CreatedOnToolsVersion = 26.3;
+					};
+					8C67A2CA37B54104AFCD0FC4 = {
+						CreatedOnToolsVersion = 26.3;
+						TestTargetID = CDC0D6A4306D523900E85E14;
 					};
 				};
 			};
@@ -113,12 +171,20 @@
 			projectRoot = "";
 			targets = (
 				CDC0D6A4306D523900E85E14 /* Ventas */,
+				8C67A2CA37B54104AFCD0FC4 /* VentasTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		CDC0D6A3306D523900E85E14 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C5F32313C2000CA4EB987896 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -135,7 +201,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EA827F0901672C855A8BC838 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C64AD7B5DEA42EC05454BD5B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CDC0D6A4306D523900E85E14 /* Ventas */;
+			targetProxy = 9850F200D3209653097E801F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		CDC0D6B9306D523A00E85E14 /* Debug */ = {
@@ -199,6 +280,40 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		DC05134D3E5254412BBC3D07 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nina.lab11-ventas.VentasTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ventas.app/Ventas";
+			};
+			name = Debug;
+		};
+		D17E1E66ABA2B8C0C72E1229 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nina.lab11-ventas.VentasTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ventas.app/Ventas";
 			};
 			name = Release;
 		};
@@ -338,6 +453,15 @@
 			buildConfigurations = (
 				CDC0D6B9306D523A00E85E14 /* Debug */,
 				CDC0D6BA306D523A00E85E14 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4498BCDF624BBDE6227C50AE /* Build configuration list for PBXNativeTarget "VentasTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC05134D3E5254412BBC3D07 /* Debug */,
+				D17E1E66ABA2B8C0C72E1229 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

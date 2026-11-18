@@ -19,7 +19,7 @@ final class PersistenceController {
         container = NSPersistentContainer(name: "Ventas")
 
         if inMemory {
-            container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
+            container.persistentStoreDescriptions.first?.type = NSInMemoryStoreType
         }
 
         container.loadPersistentStores { _, error in
