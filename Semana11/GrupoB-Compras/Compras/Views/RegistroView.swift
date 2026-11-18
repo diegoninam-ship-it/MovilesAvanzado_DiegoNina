@@ -11,6 +11,7 @@ struct RegistroView: View {
     @State private var clave = ""
     @State private var confirmacion = ""
     @State private var rol = "Comprador"
+    @State private var anguloGradiente = false
 
     @State private var mostrarAlerta = false
     @State private var mensajeAlerta = ""
@@ -18,24 +19,55 @@ struct RegistroView: View {
     private let roles = ["Comprador", "Supervisor"]
 
     var body: some View {
-        Form {
-            Section("Datos personales") {
-                TextField("Nombre completo", text: $nombre)
-                TextField("Usuario", text: $usuario)
-                    .textInputAutocapitalization(.never)
-                    .autocorrectionDisabled()
-                SecureField("Clave", text: $clave)
-                SecureField("Confirmar clave", text: $confirmacion)
-                Picker("Rol", selection: $rol) {
-                    ForEach(roles, id: \.self) { Text($0) }
-                }
-            }
+        ZStack {
+            LinearGradient(
+                colors: [Color.acentoPrimario.opacity(0.6), Color.fondoApp],
+                startPoint: anguloGradiente ? .topTrailing : .bottomLeading,
+                endPoint: anguloGradiente ? .bottomLeading : .topTrailing
+            )
+            .ignoresSafeArea()
 
-            Button("Registrarme") {
-                registrar()
+            ScrollView {
+                VStack(spacing: Espaciado.l) {
+                    VStack(spacing: Espaciado.s) {
+                        Image(systemName: "person.crop.circle.badge.plus")
+                            .font(.system(size: 48))
+                            .foregroundStyle(Color.acentoPrimario)
+                        Text("Crear cuenta")
+                            .font(Tipografia.tituloPantalla)
+                    }
+                    .padding(.top, Espaciado.xl)
+
+                    TarjetaGlass {
+                        VStack(spacing: Espaciado.m) {
+                            TextField("Nombre completo", text: $nombre)
+                            TextField("Usuario", text: $usuario)
+                                .textInputAutocapitalization(.never)
+                                .autocorrectionDisabled()
+                            SecureField("Clave", text: $clave)
+                            SecureField("Confirmar clave", text: $confirmacion)
+                            Picker("Rol", selection: $rol) {
+                                ForEach(roles, id: \.self) { Text($0) }
+                            }
+                            .pickerStyle(.segmented)
+                        }
+                    }
+
+                    Button("Registrarme") {
+                        registrar()
+                    }
+                    .buttonStyle(.primario)
+                }
+                .padding(Espaciado.l)
             }
         }
-        .navigationTitle("Crear cuenta")
+        .navigationTitle("")
+        .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            withAnimation(.easeInOut(duration: 6).repeatForever(autoreverses: true)) {
+                anguloGradiente.toggle()
+            }
+        }
         .alert("Aviso", isPresented: $mostrarAlerta) {
             Button("OK", role: .cancel) {}
         } message: {

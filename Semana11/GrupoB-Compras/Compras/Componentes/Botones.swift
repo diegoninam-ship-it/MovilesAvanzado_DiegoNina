@@ -16,12 +16,22 @@ private struct EstiloBotonAnimado: ButtonStyle {
     }
 }
 
-extension ButtonStyle where Self == EstiloBotonAnimado {
-    static var primario: EstiloBotonAnimado {
-        EstiloBotonAnimado(colorFondo: .acentoPrimario, colorTexto: .white)
+struct BotonPrimarioStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        EstiloBotonAnimado(colorFondo: .acentoPrimario, colorTexto: .white).makeBody(configuration: configuration)
     }
+}
 
-    static var secundario: EstiloBotonAnimado {
-        EstiloBotonAnimado(colorFondo: Color.acentoPrimario.opacity(0.12), colorTexto: .acentoPrimario)
+struct BotonSecundarioStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        EstiloBotonAnimado(colorFondo: Color.acentoPrimario.opacity(0.12), colorTexto: .acentoPrimario).makeBody(configuration: configuration)
     }
+}
+
+extension ButtonStyle where Self == BotonPrimarioStyle {
+    static var primario: BotonPrimarioStyle { BotonPrimarioStyle() }
+}
+
+extension ButtonStyle where Self == BotonSecundarioStyle {
+    static var secundario: BotonSecundarioStyle { BotonSecundarioStyle() }
 }
