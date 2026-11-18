@@ -83,6 +83,7 @@ struct ProductosView: View {
                     } label: {
                         Image(systemName: "plus")
                     }
+                    .accessibilityLabel("Agregar producto")
                 }
             }
         }

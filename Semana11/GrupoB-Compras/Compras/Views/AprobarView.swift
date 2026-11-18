@@ -131,6 +131,7 @@ private struct ComparacionStockCosto: View {
                 columna(titulo: "Stock", valor: "\(producto.stock)")
                 Image(systemName: "arrow.right")
                     .foregroundStyle(Color.textoSecundario)
+                    .accessibilityHidden(true)
                 columna(titulo: "Stock nuevo", valor: "\(producto.stock + compra.cantidad)", destacado: true)
             }
 
@@ -138,6 +139,7 @@ private struct ComparacionStockCosto: View {
                 columna(titulo: "Costo prom.", valor: String(format: "S/. %.2f", producto.costoPromedio))
                 Image(systemName: "arrow.right")
                     .foregroundStyle(Color.textoSecundario)
+                    .accessibilityHidden(true)
                 columna(titulo: "Costo nuevo", valor: String(format: "S/. %.2f", nuevoCosto), destacado: true)
             }
         }

@@ -17,6 +17,7 @@ struct TabViewPrincipal: View {
                 NavigationStack { ProveedoresView() }
                     .tabItem { Label("Proveedores", systemImage: "building.2") }
             }
+            .tint(Color.acentoPrimario)
         } else {
             TabView {
                 NavigationStack { ProductosView() }
@@ -28,6 +29,7 @@ struct TabViewPrincipal: View {
                 NavigationStack { MisComprasView() }
                     .tabItem { Label("Mis compras", systemImage: "list.bullet.rectangle") }
             }
+            .tint(Color.acentoPrimario)
         }
     }
 }
@@ -47,6 +49,7 @@ struct MenuCuentaToolbar: ViewModifier {
                     } label: {
                         Image(systemName: "person.crop.circle")
                     }
+                    .accessibilityLabel("Cuenta")
                 }
             }
     }

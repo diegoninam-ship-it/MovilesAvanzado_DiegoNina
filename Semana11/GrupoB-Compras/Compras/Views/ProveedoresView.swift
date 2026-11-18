@@ -62,6 +62,7 @@ struct ProveedoresView: View {
                     } label: {
                         Image(systemName: "plus")
                     }
+                    .accessibilityLabel("Agregar proveedor")
                 }
             }
         }
