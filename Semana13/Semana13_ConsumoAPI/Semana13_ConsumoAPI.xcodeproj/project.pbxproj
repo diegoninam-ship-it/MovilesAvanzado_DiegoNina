@@ -24,9 +24,28 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXContainerItemProxy section */
+		EA19437385BB46E3A9348213 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B1EE8DA8D3BF4C339DA38A81 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7772C1E19642480B8E5BECD8;
+			remoteInfo = Semana13_ConsumoAPI;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXTargetDependency section */
+		4A115F67FA6946A8A0EFC0A9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7772C1E19642480B8E5BECD8 /* Semana13_ConsumoAPI */;
+			targetProxy = EA19437385BB46E3A9348213 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXFileReference section */
 		31F09F165C8C4F9EBD0DC3C8 /* Semana13_ConsumoAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Semana13_ConsumoAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28739A7D6BD44B34ACC3C469 /* Semana13_ConsumoAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Semana13_ConsumoAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6AB4E661C80341DE96A58C2D /* Semana13_ConsumoAPIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Semana13_ConsumoAPIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -40,6 +59,11 @@
 			path = Semana13_ConsumoAPITests;
 			sourceTree = "<group>";
 		};
+		C6BB796FB1034ECE806325A6 /* Semana13_ConsumoAPIUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Semana13_ConsumoAPIUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +75,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		620A13912890409CB08BD943 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DF41FB5A5BBF460CB0EAE35D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -71,6 +102,7 @@
 		62BB8035C7C34810A5B9855A /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				6AB4E661C80341DE96A58C2D /* Semana13_ConsumoAPIUITests.xctest */,
 				28739A7D6BD44B34ACC3C469 /* Semana13_ConsumoAPITests.xctest */,
 				31F09F165C8C4F9EBD0DC3C8 /* Semana13_ConsumoAPI.app */,
 			);
@@ -125,6 +157,29 @@
 			productReference = 28739A7D6BD44B34ACC3C469 /* Semana13_ConsumoAPITests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		7705D00047B84840A89F4994 /* Semana13_ConsumoAPIUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 529FD6012A104F6BAA68AEDE /* Build configuration list for PBXNativeTarget "Semana13_ConsumoAPIUITests" */;
+			buildPhases = (
+				B41508FAF7074E92AF1FCD1F /* Sources */,
+				DF41FB5A5BBF460CB0EAE35D /* Frameworks */,
+				D964F9C22CE8455B9AA045D7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4A115F67FA6946A8A0EFC0A9 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				C6BB796FB1034ECE806325A6 /* Semana13_ConsumoAPIUITests */,
+			);
+			name = Semana13_ConsumoAPIUITests;
+			packageProductDependencies = (
+			);
+			productName = Semana13_ConsumoAPIUITests;
+			productReference = 6AB4E661C80341DE96A58C2D /* Semana13_ConsumoAPIUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -135,6 +190,14 @@
 				LastSwiftUpdateCheck = 2710;
 				LastUpgradeCheck = 2710;
 				TargetAttributes = {
+					4055013C920448E69A581221 = {
+						CreatedOnToolsVersion = 27.1;
+						TestTargetID = 7772C1E19642480B8E5BECD8;
+					};
+					7705D00047B84840A89F4994 = {
+						CreatedOnToolsVersion = 27.1;
+						TestTargetID = 7772C1E19642480B8E5BECD8;
+					};
 					7772C1E19642480B8E5BECD8 = {
 						CreatedOnToolsVersion = 27.1;
 					};
@@ -156,6 +219,7 @@
 			targets = (
 				7772C1E19642480B8E5BECD8 /* Semana13_ConsumoAPI */,
 				4055013C920448E69A581221 /* Semana13_ConsumoAPITests */,
+				7705D00047B84840A89F4994 /* Semana13_ConsumoAPIUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -175,6 +239,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D964F9C22CE8455B9AA045D7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -186,6 +257,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		14A423C91F2B4B00ADBA68FE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B41508FAF7074E92AF1FCD1F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -406,6 +484,38 @@
 			};
 			name = Release;
 		};
+		9DCAEBFFCF7041B092257C3E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nina.semana13consumoapi.uitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Semana13_ConsumoAPI;
+			};
+			name = Debug;
+		};
+		1BABA5D07EAC429185312EFE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nina.semana13consumoapi.uitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Semana13_ConsumoAPI;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -432,6 +542,15 @@
 			buildConfigurations = (
 				FB47136EC6BE4770B4B7C4C5 /* Debug */,
 				BDECC7E8506E46DD99DE283D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		529FD6012A104F6BAA68AEDE /* Build configuration list for PBXNativeTarget "Semana13_ConsumoAPIUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9DCAEBFFCF7041B092257C3E /* Debug */,
+				1BABA5D07EAC429185312EFE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

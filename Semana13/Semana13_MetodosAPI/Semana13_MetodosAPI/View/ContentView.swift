@@ -54,6 +54,7 @@ struct ContentView: View {
                                         .tint(Colores.acentoPrimario)
                                         .accessibilityLabel("Editar a \(user.name)")
                                     }
+                                    .accessibilityIdentifier("userRow_\(user.id)")
                             }
                         }
                         .padding(.vertical, Espaciado.sm)
@@ -83,6 +84,7 @@ struct ContentView: View {
                             .foregroundStyle(Colores.acentoPrimario)
                     }
                     .accessibilityLabel("Agregar nuevo usuario")
+                    .accessibilityIdentifier("botonAgregar")
                 }
             }
             .onAppear {

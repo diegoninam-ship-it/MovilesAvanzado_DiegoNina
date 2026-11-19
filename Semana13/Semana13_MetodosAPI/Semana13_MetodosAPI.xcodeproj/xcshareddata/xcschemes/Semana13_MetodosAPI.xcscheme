@@ -35,6 +35,20 @@
                ReferencedContainer = "container:Semana13_MetodosAPI.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EA6D5D3FE99544C895688B2B"
+               BuildableName = "Semana13_MetodosAPIUITests.xctest"
+               BlueprintName = "Semana13_MetodosAPIUITests"
+               ReferencedContainer = "container:Semana13_MetodosAPI.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -50,6 +64,16 @@
                BlueprintIdentifier = "D72138CD07CB4BB99AD16EEE"
                BuildableName = "Semana13_MetodosAPITests.xctest"
                BlueprintName = "Semana13_MetodosAPITests"
+               ReferencedContainer = "container:Semana13_MetodosAPI.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EA6D5D3FE99544C895688B2B"
+               BuildableName = "Semana13_MetodosAPIUITests.xctest"
+               BlueprintName = "Semana13_MetodosAPIUITests"
                ReferencedContainer = "container:Semana13_MetodosAPI.xcodeproj">
             </BuildableReference>
          </TestableReference>

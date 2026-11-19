@@ -35,20 +35,23 @@ struct UserFormView: View {
                                 titulo: "Nombre",
                                 texto: $name,
                                 vacio: nombreVacio,
-                                ayuda: "El nombre es obligatorio"
+                                ayuda: "El nombre es obligatorio",
+                                identificador: "campoNombre"
                             )
                             campoFormulario(
                                 titulo: "Usuario",
                                 texto: $username,
                                 vacio: usuarioVacio,
-                                ayuda: "El usuario es obligatorio"
+                                ayuda: "El usuario es obligatorio",
+                                identificador: "campoUsuario"
                             )
                             campoFormulario(
                                 titulo: "Correo",
                                 texto: $email,
                                 vacio: correoVacio,
                                 ayuda: "El correo es obligatorio",
-                                teclado: .emailAddress
+                                teclado: .emailAddress,
+                                identificador: "campoCorreo"
                             )
                         }
                         .padding(Espaciado.md)
@@ -84,6 +87,7 @@ struct UserFormView: View {
                         )
                         .animation(.spring(response: 0.3, dampingFraction: 0.6), value: botonPresionado)
                         .animation(.easeInOut(duration: 0.2), value: formularioValido)
+                        .accessibilityIdentifier("botonGuardar")
                     }
                     .padding(Espaciado.md)
                 }
@@ -113,7 +117,8 @@ struct UserFormView: View {
         texto: Binding<String>,
         vacio: Bool,
         ayuda: String,
-        teclado: UIKeyboardType = .default
+        teclado: UIKeyboardType = .default,
+        identificador: String
     ) -> some View {
         VStack(alignment: .leading, spacing: Espaciado.xs) {
             Text(titulo)
@@ -128,6 +133,7 @@ struct UserFormView: View {
                     RoundedRectangle(cornerRadius: Espaciado.radioBoton, style: .continuous)
                         .strokeBorder(vacio ? Colores.advertencia : Color.clear, lineWidth: 1.5)
                 )
+                .accessibilityIdentifier(identificador)
 
             if vacio {
                 Text(ayuda)

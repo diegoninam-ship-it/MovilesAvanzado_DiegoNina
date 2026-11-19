@@ -40,6 +40,7 @@ struct ContentView: View {
                                             .delay(Double(indice) * 0.04),
                                         value: viewModel.filteredUsers.count
                                     )
+                                    .accessibilityIdentifier("userRow_\(usuario.id)")
                             }
                         }
                         .padding(.vertical, Espaciado.sm)

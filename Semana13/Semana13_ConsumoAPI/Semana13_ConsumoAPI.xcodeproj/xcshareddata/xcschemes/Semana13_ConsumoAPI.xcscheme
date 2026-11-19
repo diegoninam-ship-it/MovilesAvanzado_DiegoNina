@@ -35,6 +35,20 @@
                ReferencedContainer = "container:Semana13_ConsumoAPI.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "7705D00047B84840A89F4994"
+               BuildableName = "Semana13_ConsumoAPIUITests.xctest"
+               BlueprintName = "Semana13_ConsumoAPIUITests"
+               ReferencedContainer = "container:Semana13_ConsumoAPI.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -50,6 +64,16 @@
                BlueprintIdentifier = "4055013C920448E69A581221"
                BuildableName = "Semana13_ConsumoAPITests.xctest"
                BlueprintName = "Semana13_ConsumoAPITests"
+               ReferencedContainer = "container:Semana13_ConsumoAPI.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "7705D00047B84840A89F4994"
+               BuildableName = "Semana13_ConsumoAPIUITests.xctest"
+               BlueprintName = "Semana13_ConsumoAPIUITests"
                ReferencedContainer = "container:Semana13_ConsumoAPI.xcodeproj">
             </BuildableReference>
          </TestableReference>
