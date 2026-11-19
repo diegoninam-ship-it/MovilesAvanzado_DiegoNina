@@ -21,7 +21,9 @@ struct ContentView: View {
                 }
                 .swipeActions {
                     Button(role: .destructive) {
-                        viewModel.deleteUser(user)
+                        Task {
+                            await viewModel.deleteUser(user)
+                        }
                     } label: {
                         Label("Eliminar", systemImage: "trash")
                     }
@@ -37,6 +39,15 @@ struct ContentView: View {
             }
             .navigationTitle("Usuarios")
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        Task {
+                            await viewModel.fetchUsers()
+                        }
+                    } label: {
+                        Image(systemName: "arrow.clockwise")
+                    }
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         editingUser = nil
@@ -47,14 +58,18 @@ struct ContentView: View {
                 }
             }
             .onAppear {
-                viewModel.fetchUsers()
+                Task {
+                    await viewModel.fetchUsers()
+                }
             }
             .sheet(isPresented: $showingForm) {
                 UserFormView(userToEdit: editingUser) { user in
-                    if editingUser != nil {
-                        viewModel.updateUser(user)
-                    } else {
-                        viewModel.addUser(user)
+                    Task {
+                        if editingUser != nil {
+                            await viewModel.updateUser(user)
+                        } else {
+                            await viewModel.addUser(user)
+                        }
                     }
                 }
             }

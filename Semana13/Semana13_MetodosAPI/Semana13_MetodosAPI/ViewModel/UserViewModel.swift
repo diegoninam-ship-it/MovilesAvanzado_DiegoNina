@@ -6,27 +6,32 @@ import Combine
 class UserViewModel: ObservableObject {
 
     @Published var users: [User] = []
+    @Published var errorMessage: String? = nil
 
     private let baseURL = "https://jsonplaceholder.typicode.com/users"
 
     // MARK: - GET
 
-    func fetchUsers() {
+    func fetchUsers() async {
         guard let url = URL(string: baseURL) else { return }
 
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data, error == nil else { return }
-            guard let decodedUsers = try? JSONDecoder().decode([User].self, from: data) else { return }
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            let decodedUsers = try JSONDecoder().decode([User].self, from: data)
 
-            DispatchQueue.main.async {
+            await MainActor.run {
                 self.users = decodedUsers
             }
-        }.resume()
+        } catch {
+            await MainActor.run {
+                self.errorMessage = error.localizedDescription
+            }
+        }
     }
 
     // MARK: - POST
 
-    func addUser(_ user: User) {
+    func addUser(_ user: User) async {
         guard let url = URL(string: baseURL) else { return }
 
         var request = URLRequest(url: url)
@@ -34,19 +39,23 @@ class UserViewModel: ObservableObject {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try? JSONEncoder().encode(user)
 
-        URLSession.shared.dataTask(with: request) { data, _, error in
-            guard let data = data, error == nil else { return }
-            guard let createdUser = try? JSONDecoder().decode(User.self, from: data) else { return }
+        do {
+            let (data, _) = try await URLSession.shared.data(for: request)
+            let createdUser = try JSONDecoder().decode(User.self, from: data)
 
-            DispatchQueue.main.async {
+            await MainActor.run {
                 self.users.append(createdUser)
             }
-        }.resume()
+        } catch {
+            await MainActor.run {
+                self.errorMessage = error.localizedDescription
+            }
+        }
     }
 
     // MARK: - PUT
 
-    func updateUser(_ user: User) {
+    func updateUser(_ user: User) async {
         guard let url = URL(string: "\(baseURL)/\(user.id)") else { return }
 
         var request = URLRequest(url: url)
@@ -54,31 +63,39 @@ class UserViewModel: ObservableObject {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try? JSONEncoder().encode(user)
 
-        URLSession.shared.dataTask(with: request) { data, _, error in
-            guard data != nil, error == nil else { return }
+        do {
+            _ = try await URLSession.shared.data(for: request)
 
-            DispatchQueue.main.async {
+            await MainActor.run {
                 if let index = self.users.firstIndex(where: { $0.id == user.id }) {
                     self.users[index] = user
                 }
             }
-        }.resume()
+        } catch {
+            await MainActor.run {
+                self.errorMessage = error.localizedDescription
+            }
+        }
     }
 
     // MARK: - DELETE
 
-    func deleteUser(_ user: User) {
+    func deleteUser(_ user: User) async {
         guard let url = URL(string: "\(baseURL)/\(user.id)") else { return }
 
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
 
-        URLSession.shared.dataTask(with: request) { data, _, error in
-            guard error == nil else { return }
+        do {
+            _ = try await URLSession.shared.data(for: request)
 
-            DispatchQueue.main.async {
+            await MainActor.run {
                 self.users.removeAll { $0.id == user.id }
             }
-        }.resume()
+        } catch {
+            await MainActor.run {
+                self.errorMessage = error.localizedDescription
+            }
+        }
     }
 }
