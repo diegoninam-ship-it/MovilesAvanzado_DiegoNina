@@ -19,7 +19,9 @@ struct UserFormView: View {
     private var nombreVacio: Bool { name.trimmingCharacters(in: .whitespaces).isEmpty }
     private var usuarioVacio: Bool { username.trimmingCharacters(in: .whitespaces).isEmpty }
     private var correoVacio: Bool { email.trimmingCharacters(in: .whitespaces).isEmpty }
-    private var formularioValido: Bool { !nombreVacio && !usuarioVacio && !correoVacio }
+    private var formularioValido: Bool {
+        formularioEsValido(nombre: name, username: username, correo: email)
+    }
 
     var body: some View {
         NavigationStack {
