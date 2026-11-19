@@ -7,37 +7,61 @@ struct ContentView: View {
     @StateObject private var viewModel = UserViewModel()
     @State private var editingUser: User? = nil
     @State private var showingForm = false
+    @State private var estaCargando = true
 
     var body: some View {
         NavigationStack {
-            List(viewModel.users) { user in
-                VStack(alignment: .leading) {
-                    Text(user.name)
-                        .font(.headline)
-                        .foregroundColor(.accentColor)
-                    Text(user.email)
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
-                }
-                .swipeActions {
-                    Button(role: .destructive) {
-                        Task {
-                            await viewModel.deleteUser(user)
-                        }
-                    } label: {
-                        Label("Eliminar", systemImage: "trash")
-                    }
+            ZStack {
+                Colores.fondo.ignoresSafeArea()
 
-                    Button {
-                        editingUser = user
-                        showingForm = true
-                    } label: {
-                        Label("Editar", systemImage: "pencil")
+                if estaCargando {
+                    EstadoCargando()
+                } else if viewModel.users.isEmpty {
+                    EstadoVacio(
+                        icono: "person.2.slash",
+                        titulo: "Sin usuarios",
+                        mensaje: "Agrega tu primer usuario con el boton +."
+                    )
+                } else {
+                    ScrollView {
+                        LazyVStack(spacing: Espaciado.sm) {
+                            ForEach(Array(viewModel.users.enumerated()), id: \.element.id) { indice, user in
+                                TarjetaUsuario(nombre: user.name, correo: user.email)
+                                    .padding(.horizontal, Espaciado.md)
+                                    .transition(.opacity.combined(with: .move(edge: .top)))
+                                    .animation(
+                                        .spring(response: 0.45, dampingFraction: 0.8)
+                                            .delay(Double(indice) * 0.04),
+                                        value: viewModel.users.count
+                                    )
+                                    .swipeActions {
+                                        Button(role: .destructive) {
+                                            Task {
+                                                await viewModel.deleteUser(user)
+                                            }
+                                        } label: {
+                                            Label("Eliminar", systemImage: "trash")
+                                        }
+                                        .tint(Colores.peligro)
+                                        .accessibilityLabel("Eliminar a \(user.name)")
+
+                                        Button {
+                                            editingUser = user
+                                            showingForm = true
+                                        } label: {
+                                            Label("Editar", systemImage: "pencil")
+                                        }
+                                        .tint(Colores.acentoPrimario)
+                                        .accessibilityLabel("Editar a \(user.name)")
+                                    }
+                            }
+                        }
+                        .padding(.vertical, Espaciado.sm)
                     }
-                    .tint(.orange)
                 }
             }
             .navigationTitle("Usuarios")
+            .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
@@ -47,19 +71,26 @@ struct ContentView: View {
                     } label: {
                         Image(systemName: "arrow.clockwise")
                     }
+                    .accessibilityLabel("Actualizar lista de usuarios")
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         editingUser = nil
                         showingForm = true
                     } label: {
-                        Image(systemName: "plus")
+                        Image(systemName: "plus.circle.fill")
+                            .font(.title2)
+                            .foregroundStyle(Colores.acentoPrimario)
                     }
+                    .accessibilityLabel("Agregar nuevo usuario")
                 }
             }
             .onAppear {
                 Task {
                     await viewModel.fetchUsers()
+                    withAnimation {
+                        estaCargando = false
+                    }
                 }
             }
             .sheet(isPresented: $showingForm) {
