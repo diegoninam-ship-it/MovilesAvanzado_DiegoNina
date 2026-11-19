@@ -14,6 +14,7 @@ struct EstadoVacio: View {
                 .font(.system(size: 48))
                 .symbolRenderingMode(.hierarchical)
                 .foregroundStyle(Colores.acentoPrimario)
+                .accessibilityHidden(true)
 
             Text(titulo)
                 .font(Tipografia.tituloFila)

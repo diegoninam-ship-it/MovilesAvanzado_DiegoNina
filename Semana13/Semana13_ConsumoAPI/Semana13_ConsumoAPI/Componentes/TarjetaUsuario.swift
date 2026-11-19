@@ -21,6 +21,7 @@ struct TarjetaUsuario: View {
                         .font(.system(.title3, design: .rounded, weight: .bold))
                         .foregroundStyle(.white)
                 )
+                .accessibilityHidden(true)
 
             VStack(alignment: .leading, spacing: Espaciado.xs) {
                 Text(nombre)
@@ -36,6 +37,7 @@ struct TarjetaUsuario: View {
         .padding(Espaciado.md)
         .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: Espaciado.radioTarjeta, style: .continuous))
         .shadow(color: .black.opacity(0.08), radius: 8, x: 0, y: 4)
+        .accessibilityElement(children: .combine)
     }
 }
 
