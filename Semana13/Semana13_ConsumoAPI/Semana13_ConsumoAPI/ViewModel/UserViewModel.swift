@@ -6,8 +6,19 @@ import Combine
 class UserViewModel: ObservableObject {
 
     @Published var users: [User] = []
+    @Published var searchText: String = ""
 
     private let usersURL = URL(string: "https://jsonplaceholder.typicode.com/users")!
+
+    // MARK: - Filtro de busqueda
+
+    var filteredUsers: [User] {
+        guard !searchText.isEmpty else { return users }
+        return users.filter {
+            $0.name.localizedCaseInsensitiveContains(searchText) ||
+            $0.username.localizedCaseInsensitiveContains(searchText)
+        }
+    }
 
     // MARK: - Consumo de API (GET)
 

@@ -8,7 +8,7 @@ struct ContentView: View {
 
     var body: some View {
         NavigationStack {
-            List(viewModel.users) { user in
+            List(viewModel.filteredUsers) { user in
                 VStack(alignment: .leading) {
                     Text(user.name)
                         .font(.headline)
@@ -18,6 +18,7 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("Usuarios")
+            .searchable(text: $viewModel.searchText)
             .onAppear {
                 viewModel.fetchUsers()
             }
