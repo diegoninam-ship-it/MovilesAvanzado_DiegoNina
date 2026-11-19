@@ -3,8 +3,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var viewModel = UserViewModel()
+
     var body: some View {
-        Text("Semana13_MetodosAPI")
+        List(viewModel.users) { user in
+            Text(user.name)
+        }
+        .onAppear {
+            viewModel.fetchUsers()
+        }
     }
 }
 
