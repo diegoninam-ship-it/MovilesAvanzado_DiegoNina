@@ -6,8 +6,27 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		29F0AFCDF8ED42B784EF2A0F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B1EE8DA8D3BF4C339DA38A81 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7772C1E19642480B8E5BECD8;
+			remoteInfo = Semana13_ConsumoAPI;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXTargetDependency section */
+		507858DCD3674E98A0F69318 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7772C1E19642480B8E5BECD8 /* Semana13_ConsumoAPI */;
+			targetProxy = 29F0AFCDF8ED42B784EF2A0F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXFileReference section */
 		31F09F165C8C4F9EBD0DC3C8 /* Semana13_ConsumoAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Semana13_ConsumoAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		28739A7D6BD44B34ACC3C469 /* Semana13_ConsumoAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Semana13_ConsumoAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -16,10 +35,22 @@
 			path = Semana13_ConsumoAPI;
 			sourceTree = "<group>";
 		};
+		BB2D5B9739094A57AB9C57A6 /* Semana13_ConsumoAPITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Semana13_ConsumoAPITests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		1C8DC209974E4136806C9686 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		620A13912890409CB08BD943 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -40,6 +71,7 @@
 		62BB8035C7C34810A5B9855A /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				28739A7D6BD44B34ACC3C469 /* Semana13_ConsumoAPITests.xctest */,
 				31F09F165C8C4F9EBD0DC3C8 /* Semana13_ConsumoAPI.app */,
 			);
 			name = Products;
@@ -69,6 +101,29 @@
 			productName = Semana13_ConsumoAPI;
 			productReference = 31F09F165C8C4F9EBD0DC3C8 /* Semana13_ConsumoAPI.app */;
 			productType = "com.apple.product-type.application";
+		};
+		4055013C920448E69A581221 /* Semana13_ConsumoAPITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 09439E6FDFAC45B1B74A9A07 /* Build configuration list for PBXNativeTarget "Semana13_ConsumoAPITests" */;
+			buildPhases = (
+				14A423C91F2B4B00ADBA68FE /* Sources */,
+				620A13912890409CB08BD943 /* Frameworks */,
+				B092F2083E5A4FE2B2B69CC2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				507858DCD3674E98A0F69318 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				BB2D5B9739094A57AB9C57A6 /* Semana13_ConsumoAPITests */,
+			);
+			name = Semana13_ConsumoAPITests;
+			packageProductDependencies = (
+			);
+			productName = Semana13_ConsumoAPITests;
+			productReference = 28739A7D6BD44B34ACC3C469 /* Semana13_ConsumoAPITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -100,6 +155,7 @@
 			projectRoot = "";
 			targets = (
 				7772C1E19642480B8E5BECD8 /* Semana13_ConsumoAPI */,
+				4055013C920448E69A581221 /* Semana13_ConsumoAPITests */,
 			);
 		};
 /* End PBXProject section */
@@ -112,10 +168,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B092F2083E5A4FE2B2B69CC2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F6050E6D41BD4FF4862AC8BE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		14A423C91F2B4B00ADBA68FE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -302,6 +372,40 @@
 			};
 			name = Release;
 		};
+		FB47136EC6BE4770B4B7C4C5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nina.semana13consumoapi.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Semana13_ConsumoAPI.app/Semana13_ConsumoAPI";
+			};
+			name = Debug;
+		};
+		BDECC7E8506E46DD99DE283D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nina.semana13consumoapi.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Semana13_ConsumoAPI.app/Semana13_ConsumoAPI";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -319,6 +423,15 @@
 			buildConfigurations = (
 				E4B49B7A3FFD47C7A5493B09 /* Debug */,
 				AEF84F82D5D241C180C29221 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		09439E6FDFAC45B1B74A9A07 /* Build configuration list for PBXNativeTarget "Semana13_ConsumoAPITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FB47136EC6BE4770B4B7C4C5 /* Debug */,
+				BDECC7E8506E46DD99DE283D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
