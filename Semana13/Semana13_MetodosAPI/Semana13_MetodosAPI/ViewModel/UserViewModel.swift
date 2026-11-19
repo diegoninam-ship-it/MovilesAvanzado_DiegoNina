@@ -8,7 +8,12 @@ class UserViewModel: ObservableObject {
     @Published var users: [User] = []
     @Published var errorMessage: String? = nil
 
+    private let sesion: SesionDeRed
     private let baseURL = "https://jsonplaceholder.typicode.com/users"
+
+    init(sesion: SesionDeRed = URLSession.shared) {
+        self.sesion = sesion
+    }
 
     // MARK: - GET
 
@@ -16,7 +21,7 @@ class UserViewModel: ObservableObject {
         guard let url = URL(string: baseURL) else { return }
 
         do {
-            let (data, _) = try await URLSession.shared.data(from: url)
+            let (data, _) = try await sesion.data(from: url)
             let decodedUsers = try JSONDecoder().decode([User].self, from: data)
 
             await MainActor.run {
@@ -40,7 +45,7 @@ class UserViewModel: ObservableObject {
         request.httpBody = try? JSONEncoder().encode(user)
 
         do {
-            let (data, _) = try await URLSession.shared.data(for: request)
+            let (data, _) = try await sesion.data(for: request)
             let createdUser = try JSONDecoder().decode(User.self, from: data)
 
             await MainActor.run {
@@ -64,7 +69,7 @@ class UserViewModel: ObservableObject {
         request.httpBody = try? JSONEncoder().encode(user)
 
         do {
-            _ = try await URLSession.shared.data(for: request)
+            _ = try await sesion.data(for: request)
 
             await MainActor.run {
                 if let index = self.users.firstIndex(where: { $0.id == user.id }) {
@@ -87,7 +92,7 @@ class UserViewModel: ObservableObject {
         request.httpMethod = "DELETE"
 
         do {
-            _ = try await URLSession.shared.data(for: request)
+            _ = try await sesion.data(for: request)
 
             await MainActor.run {
                 self.users.removeAll { $0.id == user.id }
